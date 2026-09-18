@@ -1,0 +1,78 @@
+# PROJ-MK-ULTRA Configuration — SUGGESTED DEFAULTS TEMPLATE
+# Copy to etc/proj-mk-ultra.conf (or run: useful-scripts/generate-config.sh --write)
+# and adjust the five hardware keys for your machine. Suggested defaults are
+# deliberately generic: match CORE_HOST_FILESYSTEM to your root filesystem,
+# derive CHILD_MEMORY_SIZE/CHILD_CPU_MASK from your RAM/CPU (see comments),
+# and set TARGET_DISK/PASSTHROUGH_PCI_DEVICES from lsblk/lspci on YOUR machine.
+
+# Host Configuration
+CORE_HOST_FILESYSTEM="ext4"
+SECURITY_LEVEL="basic"
+
+# Leapfrog Filesystem Diversity
+CHILD_LEAPFROG_FS_ENABLE="false"
+CHILD_LEAPFROG_FS="btrfs"
+CHILD_LEAPFROG_ALT="xfs"
+
+# Cross-Distro Support
+CROSS_DISTRO_ENABLE="false"
+CHILD_DISTRO="arch"
+
+# Installation Target
+INSTALL_TARGET="secondary-disk"
+
+# Child Kernel Configuration
+CHILD_ROOT_SIZE="20G"
+CHILD_BOOT_SIZE="512M"
+CHILD_DATA_SIZE="100%"
+
+# Child Instance Hardware Assignment
+CHILD_CPU_MASK="0xFFFFFFF0"
+CHILD_MEMORY_SIZE="112G"
+# MOVABLECORE: the ZONE_MOVABLE size the boot entry reserves (the multikernel
+# pool source). Must exceed CHILD_MEMORY_SIZE by scan slack (reference: +36G
+# on the 128GB build). The wizard syncs the mk boot entry to this value.
+MOVABLECORE="116G"
+PASSTHROUGH_PCI_DEVICES="01:00.0"
+MEMORY_RESERVATION_ACKNOWLEDGED="false"
+CHILD_KERNEL_PATH=""
+CHILD_INITRD_PATH=""
+# SPAWN_KEEP_BOUND: true (default) = host USB drivers stay bound during spawn;
+# the multikernel core manages the handoff at boot time. Set to false only if
+# you need the legacy host-side driver release before the boot command.
+SPAWN_KEEP_BOUND="true"
+
+# Security Settings
+MODULE_SIGNING_ENFORCE="true"
+IOMMU_VERIFY="true"
+CAPABILITY_DROPPING="true"
+FILESYSTEM_ISOLATION="true"
+NETWORK_ISOLATION="true"
+
+# Detection Settings
+BOOT_INTEGRITY_MONITOR="true"
+HARDWARE_ISOLATION_MONITOR="true"
+SYSFS_ACCESS_MONITOR="true"
+MODULE_LOADING_MONITOR="true"
+BEHAVIORAL_ANOMALY_DETECTION="true"
+
+# Response Settings
+AUTO_DESTROY_ON_DETECTION="true"
+PRESERVE_USER_DATA="true"
+FORENSIC_LOGGING="true"
+RECOVERY_PROCEDURES="true"
+
+# Update Settings
+AUTO_UPDATE_MAINSTREAM="false"
+AUTO_UPDATE_MULTIKERNEL="false"
+AUTO_SYNC_CHILD="false"
+
+# Btrfs Snapshot Settings
+BTRFS_SNAPSHOT_ENABLE="false"
+BTRFS_SNAPSHOT_KEEP="5"
+
+# Disk Configuration
+TARGET_DISK=""
+CHILD_BOOT_DEVICE=""
+CHILD_ROOT_DEVICE=""
+CHILD_DATA_DEVICE=""

@@ -1,0 +1,18 @@
+From: PROJ-MK-ULTRA <loudmumble@localhost>
+Subject: [PATCH] multikernel: raise MK_CTRL_PGTABLE_PAGES to 256
+
+The pool identity page table allocates one page-table page per GB of pool
+at 2MB pages, from a fixed array bounded by MK_CTRL_PGTABLE_PAGES (default
+64). Pools larger than ~64GB exceed the array: the baseline claims the
+chunk, then mk_arch_pool_chunk_added -> mk_ident_map_range fails and the
+kernel returns the memory (dmesg: "Multikernel pool: removed" follows the
+contig war). 256 covers ~250GB of pool.
+---
+ arch/x86/include/asm/multikernel.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/arch/x86/include/asm/multikernel.h
++++ b/arch/x86/include/asm/multikernel.h
+@@ -173,7 +173,7 @@
+-#define MK_CTRL_PGTABLE_PAGES	64
++#define MK_CTRL_PGTABLE_PAGES	256

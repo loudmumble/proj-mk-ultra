@@ -1,0 +1,20 @@
+[Unit]
+Description=PROJ-MK-ULTRA multikernel baseline (pool boundary establishment)
+Documentation=file:///path/to/proj-mk-ultra/docs/DEPLOYMENT-GUIDE.md
+DefaultDependencies=no
+After=systemd-modules-load.service local-fs.target
+Before=multi-user.target
+ConditionKernelCommandLine=|movablecore
+# ConditionPathExists is set by 2_setup.sh to the real SCRIPT_DIR at install time.
+# Do NOT copy this template directly — run: sudo ./2_setup.sh
+# The installed unit at /etc/systemd/system/mk-baseline.service has the correct path.
+ConditionPathExists=/path/to/proj-mk-ultra/scripts/apply-baseline.sh
+
+[Service]
+Type=oneshot
+# IMPORTANT: path below is replaced with the real repo path by 2_setup.sh at install time.
+ExecStart=/usr/bin/bash /path/to/proj-mk-ultra/scripts/apply-baseline.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

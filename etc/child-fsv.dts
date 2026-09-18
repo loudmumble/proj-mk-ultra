@@ -1,0 +1,20 @@
+# REFERENCE EXAMPLE ONLY (128GB i9-14900KF build) - scripts generate the
+# real DTS at runtime; CPU IDs MUST be physical APIC IDs (logical IDs are
+# rejected), and the memory size MUST be <= your machine's pool ceiling
+# (sudo ./scripts/probe-pool-ceiling.sh).
+/dts-v1/;
+/plugin/;
+/ {
+    fragment@0 {
+        target-path = "/instances";
+        __overlay__ {
+            instance-create {
+                instance-name = "child-fsv";
+                resources {
+                    memory-bytes = /bits/ 64 <0x1400000000>;
+                    cpus = /bits/ 64 <0x10 0x11 0x18 0x19 0x20 0x21 0x28 0x29 0x30 0x31 0x38 0x39 0x40 0x42 0x44 0x46 0x48 0x4A 0x4C 0x4E 0x50 0x52 0x54 0x56 0x58 0x5A 0x5C 0x5E>;
+                };
+            };
+        };
+    };
+};

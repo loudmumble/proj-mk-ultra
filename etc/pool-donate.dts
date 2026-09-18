@@ -1,0 +1,48 @@
+# REFERENCE EXAMPLE ONLY (128GB i9-14900KF build) - scripts generate the
+# real DTS at runtime; CPU IDs MUST be physical APIC IDs (logical IDs are
+# rejected), and the memory size MUST be <= your machine's pool ceiling
+# (sudo ./scripts/probe-pool-ceiling.sh).
+/dts-v1/;
+/plugin/;
+/ {
+    fragment@0 {
+        target-path = "/resources";
+        __overlay__ {
+            memory-add {
+                memory@0 {
+                    size = /bits/ 64 <0x1400000000>;
+                };
+            };
+            cpu-add {
+                cpu@0 { reg = /bits/ 64 <0x10>; };
+                cpu@1 { reg = /bits/ 64 <0x11>; };
+                cpu@2 { reg = /bits/ 64 <0x18>; };
+                cpu@3 { reg = /bits/ 64 <0x19>; };
+                cpu@4 { reg = /bits/ 64 <0x20>; };
+                cpu@5 { reg = /bits/ 64 <0x21>; };
+                cpu@6 { reg = /bits/ 64 <0x28>; };
+                cpu@7 { reg = /bits/ 64 <0x29>; };
+                cpu@8 { reg = /bits/ 64 <0x30>; };
+                cpu@9 { reg = /bits/ 64 <0x31>; };
+                cpu@10 { reg = /bits/ 64 <0x38>; };
+                cpu@11 { reg = /bits/ 64 <0x39>; };
+                cpu@12 { reg = /bits/ 64 <0x40>; };
+                cpu@13 { reg = /bits/ 64 <0x42>; };
+                cpu@14 { reg = /bits/ 64 <0x44>; };
+                cpu@15 { reg = /bits/ 64 <0x46>; };
+                cpu@16 { reg = /bits/ 64 <0x48>; };
+                cpu@17 { reg = /bits/ 64 <0x4A>; };
+                cpu@18 { reg = /bits/ 64 <0x4C>; };
+                cpu@19 { reg = /bits/ 64 <0x4E>; };
+                cpu@20 { reg = /bits/ 64 <0x50>; };
+                cpu@21 { reg = /bits/ 64 <0x52>; };
+                cpu@22 { reg = /bits/ 64 <0x54>; };
+                cpu@23 { reg = /bits/ 64 <0x56>; };
+                cpu@24 { reg = /bits/ 64 <0x58>; };
+                cpu@25 { reg = /bits/ 64 <0x5A>; };
+                cpu@26 { reg = /bits/ 64 <0x5C>; };
+                cpu@27 { reg = /bits/ 64 <0x5E>; };
+            };
+        };
+    };
+};

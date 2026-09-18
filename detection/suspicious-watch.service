@@ -1,0 +1,22 @@
+[Unit]
+Description=SUSPICIOUS Resident Anomaly Watcher
+After=multi-user.target
+
+[Service]
+Type=simple
+# IMPORTANT: path below is replaced with the real repo path by 2_setup.sh at install time.
+# Do NOT copy this template directly — run: sudo ./2_setup.sh
+ExecStart=/path/to/proj-mk-ultra/detection/resident-watch.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Minimal resource usage - watchdog must never burden the host
+CPUQuota=1%
+MemoryMax=64M
+MemoryHigh=32M
+IOWeight=10
+
+[Install]
+WantedBy=multi-user.target

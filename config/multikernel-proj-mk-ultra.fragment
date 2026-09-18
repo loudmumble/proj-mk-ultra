@@ -1,0 +1,36 @@
+# PROJ-MK-ULTRA kernel config fragment
+# Applied via scripts/kconfig/merge_config.sh on top of the base config
+# (defconfig or the distribution config) for the pinned multikernel commit.
+# See docs/BUILD-MULTIKERNEL.md for the full procedure.
+
+# Multikernel core
+CONFIG_MULTIKERNEL=y
+CONFIG_MULTIKERNEL_VSOCKETS=y
+
+# Device tree (instance configuration is DT-overlay based)
+CONFIG_OF=y
+CONFIG_OF_OVERLAY=y
+
+# Kexec (instance loading path)
+CONFIG_KEXEC=y
+CONFIG_KEXEC_FILE=y
+
+# IOMMU (hardware isolation is load-bearing)
+CONFIG_INTEL_IOMMU=y
+CONFIG_IOMMU_SUPPORT=y
+
+# TTY for child consoles (per multikernel.io getting started)
+CONFIG_MKTTY=y
+
+# In-kernel config visibility: scripts verify flags via zgrep /proc/config.gz
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+
+# Live kernel headers archive (debug/inspection)
+CONFIG_IKHEADERS=y
+
+# Build-time: full debug info doubles build time and produces 20GB+ of
+# artifacts for a deployment that reads config via /proc/config.gz (IKCONFIG
+# above) — debug info adds nothing here. This one setting is the difference
+# between a ~40min and a 2.5h+ build.
+CONFIG_DEBUG_INFO_NONE=y
