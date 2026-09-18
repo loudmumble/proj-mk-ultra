@@ -18,7 +18,13 @@ PROJ-MK-ULTRA is a complete, production-ready deployment of the **SUSPICIOUS Fra
 - **User data preservation** across kernel rebuilds
 - **Automatic recovery** from detected attacks
 
-This is not a toy. This is the real thing.
+This is not a toy. This is the real thing. 
+
+**IT IS HOWEVER -> INCOMPLETE**. 
+
+I haven't been able to get it to launch into a child-kernel instance for true "kernel-level-isolation" _yet_. 
+
+Now is as good of a time as any, to start building in public I'd suppose...
 
 ---
 
