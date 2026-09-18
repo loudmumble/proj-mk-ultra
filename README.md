@@ -4,7 +4,14 @@
 
 **Version:** 1.0.0  
 **Status:** Production Release  
-**License:** AGPLv3
+**License:** 
+
+This project is dual-licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)** and a **Commercial License**.
+
+- **Open Source & Non-Profit Use:** You may use, modify, and distribute this software under the terms of the AGPL-3.0. This includes end-users, non-profits, and open-source projects, provided that any derivative works or network-hosted versions also remain fully open source under the AGPL-3.0.
+- **Commercial & For-Profit Use:** For-profit organizations that wish to use this codebase without being bound by the open-source restrictions of the AGPL-3.0 (such as keeping your own proprietary code open-source) must acquire a commercial license.
+
+For commercial licensing inquiries, please contact dev@loudmumble.com
 
 ---
 
